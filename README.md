@@ -38,6 +38,24 @@ options:
                         Optimization mode: 'leftover_units' or 'leftover_units_cost' (default: 'leftover_units_cost')
 ```
 
+Main + `adjusted_leftover_units`/`adjusted_leftover_units_cost` (optimise on leftover units/cost of purchased bottles rather than total):
+
+```shell
+⇒ python -m optimize_bottles_min_leftover_units_or_cost_of_leftover_bought -h
+usage: optimize_bottles_min_leftover_units_or_cost_of_leftover_bought.py [-h] [--min-stacks MIN_STACKS] [--max-stacks MAX_STACKS] [--mode {leftover_units,leftover_units_cost,adjusted_leftover_units,adjusted_leftover_units_cost}]
+
+Optimize supplement purchasing strategy.
+
+options:
+  -h, --help            show this help message and exit
+  --min-stacks MIN_STACKS
+                        Minimum number of stacks (default: 7 * 4 days)
+  --max-stacks MAX_STACKS
+                        Maximum number of stacks (default: 7 * 4 * 2 days)
+  --mode {leftover_units,leftover_units_cost,adjusted_leftover_units,adjusted_leftover_units_cost}
+                        Optimization mode (default: 'leftover_units_cost')
+```
+
 Other/legacy:
 
 ```shell
