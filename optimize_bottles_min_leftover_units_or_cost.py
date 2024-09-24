@@ -41,6 +41,15 @@ class OptimizationMode(Enum):
   LEFTOVER_UNITS = "leftover_units"
   LEFTOVER_UNITS_COST = "leftover_units_cost"
 
+# Map CLI argument to OptimizationMode enum
+def get_mode_enum(mode_str):
+  if mode_str == "leftover_units":
+    return OptimizationMode.LEFTOVER_UNITS
+  elif mode_str == "leftover_units_cost":
+    return OptimizationMode.LEFTOVER_UNITS_COST
+  else:
+    raise ValueError(f"Unknown mode: {mode_str}")
+
 # Define CLI arguments
 def parse_args():
   parser = argparse.ArgumentParser(description="Optimize supplement purchasing strategy.")
@@ -67,15 +76,6 @@ def parse_args():
   # )
 
   return parser.parse_args()
-
-# Map CLI argument to OptimizationMode enum
-def get_mode_enum(mode_str):
-  if mode_str == "leftover_units":
-    return OptimizationMode.LEFTOVER_UNITS
-  elif mode_str == "leftover_units_cost":
-    return OptimizationMode.LEFTOVER_UNITS_COST
-  else:
-    raise ValueError(f"Unknown mode: {mode_str}")
 
 # Main function
 def main():
@@ -186,8 +186,8 @@ def main():
       purchased_bottles = int(bottles_purchased[label].varValue)
       total_units_available = current_stock + purchased_bottles * bottle_size
       total_units_needed = stacks.varValue * daily_dose
+
       leftover = leftover_units[label].varValue
-      # leftover_pct = leftover / bottle_size * 100
       leftover_cost = leftover_units_cost[label].varValue
       total_leftover_cost += leftover_cost
 
@@ -214,8 +214,8 @@ def main():
         leftover,
         leftover_pct,
         usage_pct,
-        f"${cost:.2f}",
         f"${bottle_cost:.2f}",
+        f"${cost:.2f}",
         f"${leftover_cost:.2f}",
       ])
 
@@ -230,8 +230,8 @@ def main():
       "Leftover Units",
       "Leftover %",
       "Usage %",
-      "Cost",
       "Bottle Cost",
+      "Total Cost",
       "Leftover Cost",
     ]
 
