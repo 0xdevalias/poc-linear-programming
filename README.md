@@ -74,6 +74,14 @@ python -m legacy.optimize_supplements_w3_max_stacks_min_leftover_cost_min_total_
 python -m legacy.optimize_supplements_w3_max_stacks_min_leftovers_min_total_cost
 ```
 
+Extra random things (may not be linear programming based, but still relates to some form of optimisation problem):
+
+```shell
+# Playing with Neighbour’s Ladder (Applied Optimization)
+python shortest-ladder.py
+python shortest-ladder-2.py
+```
+
 ## See Also
 
 ### My Other Related Deepdive Gist's and Projects
